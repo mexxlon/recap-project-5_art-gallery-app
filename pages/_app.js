@@ -36,23 +36,30 @@ export default function App({ Component, pageProps }) {
     }
   }
 
-  const handleAddComment = (newComment, currentDate, id) => {
-    //currentDate muss noch implementiert werden
+  const handleAddComment = (newComment, id) => {
+    const date = new Date();
+    const formattedDate = date.toLocaleString();
+
+    const commentObject = {
+      comment: newComment,
+      date: formattedDate,
+    };
+
     const artPiece = artPiecesInfo.find((piece) => piece.id === id);
     const updatedWithNewComment = artPiecesInfo.map((piece) =>
       piece.id === id
         ? {
             ...artPiece,
             comments: artPiece?.comments
-              ? [...artPiece.comments, newComment]
-              : [newComment],
+              ? [...artPiece.comments, commentObject]
+              : [commentObject],
           }
         : piece
     );
     if (!artPiece) {
       setArtPiecesInfo([
         ...artPiecesInfo,
-        { id: id, isFavorite: false, comments: [newComment] },
+        { id: id, isFavorite: false, comments: [commentObject] },
       ]);
     } else {
       setArtPiecesInfo([...updatedWithNewComment]);

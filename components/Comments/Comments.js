@@ -1,19 +1,32 @@
-import Comment from "../Comment/Comment";
-import { uid } from "uid";
+import styled from "styled-components";
+
+const CommentContainer = styled.div`
+  margin-bottom: 15px;
+`;
+
+const CommentTextAndDate = styled.p`
+  display: block;
+  font-size: 0.8rem;
+  color: #666;
+`;
 
 export default function Comments({ artPiecesInfo, currentPiece }) {
   const currentArt = artPiecesInfo.find(
     (piece) => currentPiece.slug === piece.id
   );
-  const comments = currentArt?.comments;
+  const comments = currentArt?.comments || [];
 
   return (
     <>
-      <h3 key={uid()}>Comments</h3>
-      {comments?.map((comment) => (
-        <>
-          <Comment key={uid()} comment={comment} />
-        </>
+      <h3>Comments</h3>
+      {comments.map((comment, index) => (
+        <CommentContainer key={index}>
+          <CommentTextAndDate>
+            {comment.comment}
+            <br />
+            <span>{comment.date}</span>
+          </CommentTextAndDate>
+        </CommentContainer>
       ))}
     </>
   );

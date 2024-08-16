@@ -37,8 +37,8 @@ export default function ArtPieceDetails({
       <CommentSection
         pieces={pieces}
         artPiecesInfo={artPiecesInfo}
-        handleAddComment={(newComment, currentDate) => {
-          handleAddComment(newComment, currentDate, currentPiece.slug);
+        handleAddComment={(newComment) => {
+          handleAddComment(newComment, currentPiece.slug);
         }}
       />
     </div>
