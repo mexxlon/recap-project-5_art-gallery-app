@@ -1,4 +1,18 @@
 import Image from "next/image";
+import styled from "styled-components";
+
+const FavoriteButtonContainer = styled.div`
+  display: inline-block;
+  cursor: pointer;
+
+  &:hover {
+    transform: scale(1.1);
+  }
+
+  &:active {
+    transform: scale(0.9);
+  }
+`;
 
 export default function FavoriteButton({ piece, handleToggleFavorite }) {
   function onToggleFavorite(event, slug) {
@@ -7,12 +21,10 @@ export default function FavoriteButton({ piece, handleToggleFavorite }) {
   }
 
   return (
-    <Image
-      src="/heart.svg"
-      alt="favorite button"
-      width={30}
-      height={30}
+    <FavoriteButtonContainer
       onClick={(event) => onToggleFavorite(event, piece.slug)}
-    />
+    >
+      <Image src="/heart.svg" alt="favorite button" width={30} height={30} />
+    </FavoriteButtonContainer>
   );
 }

@@ -29,5 +29,3 @@ export default function Favorites({
     </div>
   );
 }
-
-// beim styling beachten: favorite button im active zustand stylen
